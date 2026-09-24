@@ -12,6 +12,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.setPadding
 import android.view.WindowManager
+import androidx.appcompat.app.AlertDialog
 /**
  * Private, no-history browser.
  *
@@ -113,11 +114,29 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
+webView.setOnLongClickListener {
+            val result = webView.hitTestResult
+            val targetUrl = result.extra
+            val isOpenable = targetUrl != null && (
+                result.type == WebView.HitTestResult.IMAGE_TYPE ||
+                result.type == WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE ||
+                result.type == WebView.HitTestResult.SRC_ANCHOR_TYPE
+            )
+            if (isOpenable) {
+                AlertDialog.Builder(this)
+                    .setItems(arrayOf("باز کردن در تب جدید")) { _, _ ->
+                        createNewTab(select = true, url = targetUrl)
+                    }
+                    .show()
+                true
+            } else {
+                false
+            }
+}
         webView.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView, loadedUrl: String) {
                 if (view === currentWebViewOrNull()) {
-                    urlInput.setText(loadedUrl)
+                    urlInput.setText(if (loadedUrl == "about:blank") "" else loadedUrl)
                 }
             }
         }
