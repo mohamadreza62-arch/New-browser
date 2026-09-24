@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">مرورگر خصوصی</string>
+    <string name="new_tab">+</string>
+    <string name="close_tab">×</string>
+    <string name="go">برو</string>
+    <string name="url_hint">آدرس سایت یا عبارت جستجو…</string>
+</resources>
