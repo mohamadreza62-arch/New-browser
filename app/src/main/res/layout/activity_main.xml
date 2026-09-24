@@ -5,43 +5,7 @@
     android:orientation="vertical"
     android:background="#121212">
 
-    <!-- Tabs row -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:orientation="horizontal"
-        android:background="#1E1E1E"
-        android:gravity="center_vertical">
-
-        <HorizontalScrollView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:scrollbars="none">
-
-            <LinearLayout
-                android:id="@+id/tabsContainer"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:paddingStart="4dp"
-                android:gravity="center_vertical" />
-        </HorizontalScrollView>
-
-        <TextView
-            android:id="@+id/newTabButton"
-            android:layout_width="44dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/new_tab"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="?attr/selectableItemBackground" />
-    </LinearLayout>
-
-    <!-- Address bar row -->
+    <!-- Address bar row (now on top) -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
@@ -84,6 +48,45 @@
             android:padding="8dp"
             android:clickable="true"
             android:focusable="true" />
+    </LinearLayout>
+
+    <!-- Tabs row (now below the address bar), Chrome-style rounded tabs -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:orientation="horizontal"
+        android:background="#1E1E1E"
+        android:paddingTop="6dp"
+        android:gravity="bottom">
+
+        <HorizontalScrollView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/tabsContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingStart="6dp"
+                android:gravity="bottom" />
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/newTabButton"
+            android:layout_width="40dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="2dp"
+            android:gravity="center"
+            android:text="@string/new_tab"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground" />
     </LinearLayout>
 
     <ProgressBar
