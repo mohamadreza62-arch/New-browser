@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">مرورگر خصوصی</string>
+    <string name="app_name">Browser</string>
     <string name="new_tab">+</string>
     <string name="close_tab">×</string>
     <string name="go">برو</string>
