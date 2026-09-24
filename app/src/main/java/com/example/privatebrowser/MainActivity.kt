@@ -90,9 +90,15 @@ class MainActivity : AppCompatActivity() {
 
         val label = TextView(this).apply {
             text = "تب ${++tabCounter}"
-            setTextColor(0xFFFFFFFF.toInt())
-            setPadding(24)
-            setBackgroundColor(0x00000000)
+            setTextColor(0xFF9AA0A6.toInt())
+            setPadding(28, 0, 28, 0)
+            gravity = android.view.Gravity.CENTER
+            maxLines = 1
+            ellipsize = android.text.TextUtils.TruncateAt.END
+            layoutParams = LinearLayout.LayoutParams(200, LinearLayout.LayoutParams.MATCH_PARENT).apply {
+                marginEnd = 2
+            }
+            setBackgroundResource(R.drawable.bg_tab_inactive)
             setOnClickListener { switchToTab(tabs.indexOfFirst { it.webView === webView }) }
         }
         tabsContainer.addView(label)
@@ -165,7 +171,12 @@ webView.setOnLongClickListener {
         tabs.forEachIndexed { i, tab ->
             val isSelected = i == index
             tab.webView.visibility = if (isSelected) View.VISIBLE else View.GONE
-            tab.tabLabel.setBackgroundColor(if (isSelected) 0xFF1565C0.toInt() else 0x00000000)
+            tab.tabLabel.setBackgroundResource(
+                if (isSelected) R.drawable.bg_tab_active else R.drawable.bg_tab_inactive
+            )
+            tab.tabLabel.setTextColor(
+                if (isSelected) 0xFFE8EAED.toInt() else 0xFF9AA0A6.toInt()
+            )
         }
         currentTabIndex = index
         val current = tabs[index].webView
