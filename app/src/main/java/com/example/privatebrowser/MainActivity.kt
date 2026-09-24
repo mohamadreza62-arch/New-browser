@@ -11,7 +11,7 @@ import android.webkit.*
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.setPadding
-
+import android.view.WindowManager
 /**
  * Private, no-history browser.
  *
