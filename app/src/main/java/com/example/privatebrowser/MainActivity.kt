@@ -334,10 +334,10 @@ webView.setOnLongClickListener {
     // ---------------------------------------------------------------
 
     override fun onStop() {
-        // Called as soon as the app goes to the background (minimized,
-        // home button pressed, app switched away from, etc.)
         wipeEverything()
         super.onStop()
+        finishAndRemoveTask()
+        android.os.Process.killProcess(android.os.Process.myPid())
     }
 
     override fun onDestroy() {
