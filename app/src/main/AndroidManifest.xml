@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        <application
         android:allowBackup="false"
         android:fullBackupContent="false"
         android:dataExtractionRules="@null"
@@ -13,6 +12,7 @@
         android:icon="@drawable/ic_launcher"
         android:roundIcon="@drawable/ic_launcher"
         android:theme="@style/Theme.PrivateBrowser">
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
