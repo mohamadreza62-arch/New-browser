@@ -95,7 +95,6 @@ class MainActivity : AppCompatActivity() {
 
         registerReceiver(screenOffReceiver, IntentFilter(Intent.ACTION_SCREEN_OFF))
     }
-    }
 
     // ---------------------------------------------------------------
     // Tab management
