@@ -45,6 +45,17 @@ class MainActivity : AppCompatActivity() {
     private var currentTabIndex = -1
     private var tabCounter = 0
 
+    // Fires the instant the screen is locked (not just when the app is
+    // minimized). Wipes everything and kills the app completely so it
+    // leaves no trace and starts fully fresh next time it's opened.
+    private val screenOffReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            wipeEverything()
+            finishAndRemoveTask()
+            android.os.Process.killProcess(android.os.Process.myPid())
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
@@ -81,6 +92,9 @@ class MainActivity : AppCompatActivity() {
         // Every fresh app open (including after a minimize wiped everything)
         // starts with exactly one clean, empty tab.
         createNewTab(select = true)
+
+        registerReceiver(screenOffReceiver, IntentFilter(Intent.ACTION_SCREEN_OFF))
+    }
     }
 
     // ---------------------------------------------------------------
@@ -328,6 +342,11 @@ webView.setOnLongClickListener {
 
     override fun onDestroy() {
         if (tabs.isNotEmpty()) wipeEverything()
+        try {
+            unregisterReceiver(screenOffReceiver)
+        } catch (e: Exception) {
+            // Already unregistered — safe to ignore.
+        }
         super.onDestroy()
     }
 
